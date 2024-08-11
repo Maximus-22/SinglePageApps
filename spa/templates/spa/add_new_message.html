@@ -1,0 +1,71 @@
+{% extends "singlepageapp/base.html" %}
+
+{% block title %}
+Adding a new sentence
+{% endblock %}
+
+{% load static %}
+
+{% block content %}
+<div>
+
+{% if form.errors %}
+<div style="width: 25%;" class="alert alert-danger" role="alert">
+    {{ form.non_field_errors}}
+</div>
+{% endif %}
+
+<div class="author-details">
+  <h3 class="author-title" style="margin-left: 10%; font-size: 40px">Adding a new sentence</h3>
+  <br>
+  <br>
+  <form class="field" method="post" action="{% url 'spa:add_new_message' %}">
+    {% csrf_token %}
+    
+    <div class="mb-3 row" style="margin-left: 1%">
+      <label class="col-sm-2 col-form-label">User name</label>
+      <div class="col-sm-6">
+        {{ post_form.user_name }}
+      </div>
+    </div>
+    
+    <div class="mb-3 row" style="margin-left: 1%">
+      <label class="col-sm-2 col-form-label">E-mail</label>
+      <div class="col-sm-6">
+        {{ post_form.email }}
+      </div>
+    </div>
+    
+    <div class="mb-3 row" style="margin-left: 1%">
+      <label class="col-sm-2 col-form-label">Avatar URL - <i>if exists</i></label>
+      <div class="col-sm-6">
+        {{ post_form.avatar_url }}
+      </div>
+    </div>
+    
+    <div class="mb-3 row" style="margin-left: 1%">
+      <label class="col-sm-2 col-form-label">Text area</label>
+      <div class="col-sm-6">
+        {{ post_form.text }}
+      </div>
+    </div>
+
+    <div class="field is-grouped" style="margin-top: 30px; margin-left: 20%">
+      <div class="control">
+        <button type="submit" class="btn btn-primary me-2">Save</button>
+          <!-- <button class="button is-link" style="background: #125C13" type="submit">Create Tariff</button> -->
+      </div>
+      <div class="control" style="margin-left: 10px" >
+        <input type="reset" class="btn btn-secondary" value="Reset">
+          <!-- <a class="button is-link is-light" style="background: #d9e7ce; color: #333333" href="{% url 'spa:main_spa' %}" class="btn btn-primary">Back</a> -->
+      </div>
+      <div class="control" style="margin-left: 15px" >
+        <a href="{% url 'spa:main_spa' %}" class="btn btn-danger">Back</a>
+          <!-- <a class="button is-link is-light" style="background: #d9e7ce; color: #333333" href="{% url 'spa:main_spa' %}" class="btn btn-primary">Back</a> -->
+      </div>
+  </div>
+
+  </form>
+</div>
+
+{% endblock %}

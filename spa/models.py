@@ -10,8 +10,8 @@ class Post(models.Model):
     text = models.TextField(max_length=1024)
     created_at = models.DateTimeField(default=timezone.now)
 
-    def __str__(self):
-        return self.text[:64]
+    # def __str__(self):
+    #     return self.text[:64]
 
 class Comment(models.Model):
     post = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE)

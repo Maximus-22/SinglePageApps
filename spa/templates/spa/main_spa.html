@@ -1,0 +1,52 @@
+{% extends "singlepageapp/base.html" %}
+
+{% block title %}
+Main Single Page Applications
+{% endblock %}
+
+{% load static %}
+
+{% block content %}
+<div>
+
+{% if form.errors %}
+<div style="width: 25%;" class="alert alert-danger" role="alert">
+    {{ form.non_field_errors}}
+</div>
+{% endif %}
+
+    <table class="table is-fullwidth" style="width: 85%">
+        <thead>
+            <tr>
+                <th style="width: 10%;">Created At</th>
+                <th style="width: 15%;">User Name</th>
+                <th style="width: 75%;">Text</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if posts %}
+                {% for post in posts %}
+                    <tr>
+                        <td style="width: 15%;">{{ post.created_at|date:"d.m.Y в H:i" }}</td>
+                        <td style="width: 10%;">{{ post.user_name }}</td>
+                        <td style="width: 75%;">{{ post.text|slice:":64" }}</td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="3">No posts available.</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+
+    {% if messages %}
+    {% for message in messages %}
+    <div {% if message.tags %} style="width: 25%;" class="alert alert-{{message.tags}}" {% endif %} role="alert">
+        {{message}}
+    </div>
+    {% endfor %}
+    {% endif %}
+
+</div>
+{% endblock %}
