@@ -48,5 +48,23 @@ Main Single Page Applications
     {% endfor %}
     {% endif %}
 
+    <div class="pagination" style="width: 85; margin-top: 30px; margin-left: 20%">
+        <span class="step-links">
+            {% if posts.has_previous %}
+            <!--  <a href="?page=1">&laquo; first</a> -->
+                <a href="?page={{ posts.previous_page_number }}">←</a>
+            {% endif %}
+    
+            <span class="current">
+                {{ posts.number }}
+            </span>
+    
+            {% if posts.has_next %}
+                <a href="?page={{ posts.next_page_number }}">→</a>
+            <!--  <a href="?page={{ posts.paginator.num_pages }}">last &raquo;</a> -->
+            {% endif %}
+        </span>
+    </div>
+
 </div>
 {% endblock %}

@@ -18,8 +18,8 @@ Adding a new sentence
 <div class="author-details">
   <h3 class="author-title" style="margin-left: 10%; font-size: 40px">Adding a new sentence</h3>
   <br>
-  <br>
-  <form class="field" method="post" action="{% url 'spa:add_new_message' %}">
+
+  <form class="field" method="post" action="{% url 'spa:add_new_message' %}" enctype="multipart/form-data">
     {% csrf_token %}
     
     <div class="mb-3 row" style="margin-left: 1%">
@@ -27,26 +27,53 @@ Adding a new sentence
       <div class="col-sm-6">
         {{ post_form.user_name }}
       </div>
+      <div class="col-sm-6 offset-sm-2">
+        {% if post_form.user_name.help_text %}
+          <small class="form-text text-muted">{{ post_form.user_name.help_text }}</small>
+        {% endif %}
+      </div>
     </div>
-    
+
     <div class="mb-3 row" style="margin-left: 1%">
       <label class="col-sm-2 col-form-label">E-mail</label>
       <div class="col-sm-6">
         {{ post_form.email }}
       </div>
+      <div class="col-sm-6 offset-sm-2">
+        {% if post_form.email.help_text %}
+          <small class="form-text text-muted">{{ post_form.email.help_text }}</small>
+        {% endif %}
+      </div>
     </div>
-    
+
     <div class="mb-3 row" style="margin-left: 1%">
       <label class="col-sm-2 col-form-label">Avatar URL - <i>if exists</i></label>
       <div class="col-sm-6">
         {{ post_form.avatar_url }}
       </div>
+      <div class="col-sm-6 offset-sm-2">
+        {% if post_form.avatar_url.help_text %}
+          <small class="form-text text-muted">{{ post_form.avatar_url.help_text }}</small>
+        {% endif %}
+      </div>
     </div>
-    
+
     <div class="mb-3 row" style="margin-left: 1%">
       <label class="col-sm-2 col-form-label">Text area</label>
       <div class="col-sm-6">
         {{ post_form.text }}
+      </div>
+    </div>
+    <br>
+    <div class="mb-3 row" style="margin-left: 1%">
+      <label class="col-sm-2 col-form-label">File input</label>
+      <div class="col-sm-6">
+        <input class="form-control" type="file" id="formFile" name="file_data">
+      </div>
+      <div class="col-sm-6 offset-sm-2">
+        {% if post_form.file_data.help_text %}
+          <small class="form-text text-muted">{{ post_form.file_data.help_text }}</small>
+        {% endif %}
       </div>
     </div>
 
